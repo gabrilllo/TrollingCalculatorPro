@@ -1,1 +1,1 @@
-# TrollingCalculatorPro
+Starter project
