@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trolling Calculator - Versione Base</title>
+    <title>Trolling Calculator Pro</title>
 
+    <!-- Foglio di stile -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Libreria per il grafico (DEVE ESSERE PRIMA) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Script del calcolatore -->
     <script src="calculator.js"></script>
     <script src="app.js"></script>
 </head>
 
 <body>
 
-    <h1>Trolling Calculator - Versione Base</h1>
+    <h1>Trolling Calculator Pro</h1>
 
     <div class="container">
 
@@ -45,13 +50,18 @@
 
         <h2>Risultati</h2>
 
-        <p>Profondità reale dell'artificiale:
+        <p>Profondità reale dell'artificiale:  
             <span id="realDepth" style="font-weight:bold;">--</span>
         </p>
 
-        <p>Lenza da calare:
+        <p>Lenza da calare:  
             <span id="lineOut" style="font-weight:bold;">--</span>
         </p>
+
+        <h2>Curva di affondamento</h2>
+
+        <!-- Grafico -->
+        <canvas id="depthChart" width="400" height="250"></canvas>
 
     </div>
 
