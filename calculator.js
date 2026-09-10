@@ -33,10 +33,16 @@ function calculate() {
     const realDepth = theoreticalDepth * lipFactor * lineDrag * speedFactor / lureFactor;
 
     // CALCOLO LENZA NECESSARIA
-    // modello semplificato: profondità cresce logaritmicamente con la lenza
     const L = targetDepth <= 0 ? 0 : Math.round((targetDepth / realDepth) * 30);
 
-    // OUTPUT
-    document.getElementById("realDepth").innerHTML = realDepth.toFixed(2) + " m";
-    document.getElementById("lineOut").innerHTML = L + " m";
+    // OUTPUT — RISULTATI IN ROSSO, GRASSETTO, MAIUSCOLO, GRANDI
+    document.getElementById("realDepth").innerHTML =
+        "<span style='color:red; font-weight:bold; font-size:32px;'>" +
+        (realDepth.toFixed(2) + " M").toUpperCase() +
+        "</span>";
+
+    document.getElementById("lineOut").innerHTML =
+        "<span style='color:red; font-weight:bold; font-size:32px;'>" +
+        ((L + " M").toUpperCase()) +
+        "</span>";
 }
