@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trolling Calculator Pro – Calcolatore Completo</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trolling Calculator Pro</title>
 
-<script src="calculator.js"></script>
-<script src="app.js"></script>
+    <!-- Foglio di stile -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Script del calcolatore -->
+    <script src="calculator.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Libreria per il grafico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<header style="text-align:center; padding:30px;">
     <h1>Trolling Calculator Pro</h1>
-    <p>Calcolo completo della profondità reale e della lenza da calare.</p>
-</header>
 
-<section style="max-width:900px; margin:auto; padding:20px;">
+    <div class="container">
 
-    <h2>⚙️ Inserisci i dati</h2>
+        <h2>Inserisci i dati</h2>
 
-    <label>Velocità (nodi):</label><br>
-    <input id="speed" type="number" step="0.1"><br><br>
+        <label>Velocità (nodi):</label>
+        <input type="number" id="speed" step="0.1">
 
-    <label>Diametro lenza (mm):</label><br>
-    <input id="diameter" type="number" step="0.01"><br><br>
+        <label>Diametro lenza (mm):</label>
+        <input type="number" id="diameter" step="0.1">
 
-    <label>Larghezza pala (mm):</label><br>
-    <input id="lipWidth" type="number" step="0.1"><br><br>
+        <label>Larghezza pala (mm):</label>
+        <input type="number" id="lipWidth">
 
-    <label>Lunghezza pala (mm):</label><br>
-    <input id="lipLength" type="number" step="0.1"><br><br>
+        <label>Lunghezza pala (mm):</label>
+        <input type="number" id="lipLength">
 
-    <label>Lunghezza artificiale (mm):</label><br>
-    <input id="lureLength" type="number" step="0.1"><br><br>
+        <label>Lunghezza artificiale (mm):</label>
+        <input type="number" id="lureLength">
 
-    <label>Affondamento teorico dichiarato (m):</label><br>
-    <input id="theoreticalDepth" type="number" step="0.1"><br><br>
+        <label>Affondamento teorico dichiarato (m):</label>
+        <input type="number" id="theoreticalDepth" step="0.1">
 
-    <label>Profondità di traina desiderata (m):</label><br>
-    <input id="targetDepth" type="number" step="0.1"><br><br>
+        <label>Profondità desiderata (m):</label>
+        <input type="number" id="targetDepth" step="0.1">
 
-    <button onclick="calculate()" 
-            style="padding:10px 20px; background:#007bff; color:white; border:none; border-radius:6px;">
-        Calcola
-    </button>
+        <button onclick="calculate()">Calcola</button>
+        <button onclick="resetCalculator()">Reset</button>
 
-    <button onclick="resetCalculator()" 
-            style="padding:10px 20px; background:#6c757d; color:white; border:none; border-radius:6px; margin-left:10px;">
-        Reset
-    </button>
+        <h2>Risultati</h2>
 
-    <button onclick="about()" 
-            style="padding:10px 20px; background:#17a2b8; color:white; border:none; border-radius:6px; margin-left:10px;">
-        Info
-    </button>
+        <p>Profondità reale dell'artificiale:  
+            <span id="realDepth" style="font-weight:bold;">--</span>
+        </p>
 
-    <h3 style="margin-top:30px;">Risultati</h3>
+        <p>Lenza da calare:  
+            <span id="lineOut" style="font-weight:bold;">--</span>
+        </p>
 
-    <p><strong>Profondità reale dell’artificiale:</strong> <span id="realDepth">--</span></p>
-    <p><strong>Lenza da calare per raggiungere la profondità desiderata:</strong> <span id="lineOut">--</span></p>
+        <h2>Curva di affondamento</h2>
 
-</section>
+        <!-- Grafico -->
+        <canvas id="depthChart" width="400" height="250"></canvas>
 
-<footer style="text-align:center; padding:20px; color:#777;">
-    © 2026 Trolling Calculator Pro — Tool Completo
-</footer>
+    </div>
 
 </body>
 </html>
