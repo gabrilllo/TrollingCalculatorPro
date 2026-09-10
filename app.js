@@ -1,96 +1,29 @@
 /*
 =========================================
 Trolling Calculator Pro
-app.js
-Versione 1.0
+app.js minimale
+Compatibile con calculator.js
 =========================================
 */
 
-document.addEventListener("DOMContentLoaded", init);
-
-function init(){
-
+document.addEventListener("DOMContentLoaded", () => {
     console.log("Trolling Calculator Pro avviato");
+});
 
-    showPage("calculator");
-
+/* Reset dei campi */
+function resetCalculator() {
+    document.getElementById("speed").value = "";
+    document.getElementById("diameter").value = "";
+    document.getElementById("palette").value = "medium";
+    document.getElementById("declaredDepth").value = "";
+    document.getElementById("result").innerHTML = "";
 }
 
-/*
-=========================================
-Navigazione
-=========================================
-*/
-
-function showPage(page){
-
-    document.querySelectorAll(".page").forEach(function(p){
-
-        p.style.display="none";
-
-    });
-
-    const pagina=document.getElementById(page);
-
-    if(pagina){
-
-        pagina.style.display="block";
-
-    }
-
-}
-
-/*
-=========================================
-Reset campi
-=========================================
-*/
-
-function resetCalculator(){
-
-    document.getElementById("depth").value=8;
-
-    document.getElementById("speed").value=5;
-
-    document.getElementById("diameter").value=0.23;
-
-    document.getElementById("lineType").value="braid";
-
-    document.getElementById("lip").value="1.00";
-
-    document.getElementById("lureDepth").value=6;
-
-    document.getElementById("output").innerHTML="--";
-
-    document.getElementById("depthResult").innerHTML="";
-
-}
-
-/*
-=========================================
-Informazioni
-=========================================
-*/
-
-function about(){
-
+/* Info */
+function about() {
     alert(
-
         "Trolling Calculator Pro\n\n" +
-
-        "Versione 1.0\n\n" +
-
-        "Calcolatore universale per la traina."
-
+        "Versione 3.0\n\n" +
+        "Calcolatore per profondità reale degli artificiali."
     );
-
-}
-
-function init(){
-
-    showPage("calculator");
-
-    document.getElementById("footerVersion").innerHTML =
-        "<strong>Trolling Calculator Pro</strong><br>Versione 3.0";
-
 }
