@@ -6,7 +6,6 @@
 <title>Trolling Calculator Pro – Tool Gratis</title>
 <link rel="stylesheet" href="style.css">
 
-<!-- Script del calcolatore -->
 <script src="calculator.js"></script>
 <script src="app.js"></script>
 </head>
@@ -31,17 +30,30 @@
     <label>Tipo di paletta:</label><br>
     <select id="palette">
         <option value="small">Piccola</option>
-        <option value="medium">Media</option>
+        <option value="medium" selected>Media</option>
         <option value="large">Grande</option>
     </select><br><br>
 
     <label>Profondità dichiarata (m):</label><br>
     <input id="declaredDepth" type="number" step="0.1"><br><br>
 
-    <button onclick="calculate()" 
-            style="padding:10px 20px; background:#007bff; color:white; border:none; border-radius:6px;">
-        Calcola profondità reale
-    </button>
+    <!-- Pulsanti -->
+    <div style="margin-top:20px;">
+        <button onclick="calculate()" 
+                style="padding:10px 20px; background:#007bff; color:white; border:none; border-radius:6px; margin-right:10px;">
+            Calcola profondità reale
+        </button>
+
+        <button onclick="resetCalculator()" 
+                style="padding:10px 20px; background:#6c757d; color:white; border:none; border-radius:6px; margin-right:10px;">
+            Reset
+        </button>
+
+        <button onclick="about()" 
+                style="padding:10px 20px; background:#17a2b8; color:white; border:none; border-radius:6px;">
+            Info
+        </button>
+    </div>
 
     <h3 style="margin-top:20px;">Risultato:</h3>
     <div id="result" style="font-size:20px; font-weight:bold;"></div>
