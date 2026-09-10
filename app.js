@@ -1,8 +1,7 @@
 /*
 =========================================
 Trolling Calculator Pro
-app.js minimale
-Compatibile con calculator.js
+app.js compatibile
 =========================================
 */
 
@@ -14,9 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 function resetCalculator() {
     document.getElementById("speed").value = "";
     document.getElementById("diameter").value = "";
-    document.getElementById("palette").value = "medium";
-    document.getElementById("declaredDepth").value = "";
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("lipWidth").value = "";
+    document.getElementById("lipLength").value = "";
+    document.getElementById("lureLength").value = "";
+    document.getElementById("theoreticalDepth").value = "";
+    document.getElementById("targetDepth").value = "";
+    document.getElementById("realDepth").innerHTML = "--";
+    document.getElementById("lineOut").innerHTML = "--";
 }
 
 /* Info */
@@ -24,6 +27,6 @@ function about() {
     alert(
         "Trolling Calculator Pro\n\n" +
         "Versione 3.0\n\n" +
-        "Calcolatore per profondità reale degli artificiali."
+        "Calcolatore completo per profondità reale e lenza da calare."
     );
 }
