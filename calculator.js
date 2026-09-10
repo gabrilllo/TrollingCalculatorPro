@@ -14,26 +14,28 @@ function calculate() {
         return;
     }
 
-    // SUPERFICIE PALA (cm² → m²)
+    // MODELLO REALISTICO
+
+    // Superficie pala (cm² → m²)
     const lipArea = (lipWidth * lipLength) / 10000;
 
-    // COEFFICIENTE PALA
-    const lipFactor = 1 + (lipArea * 12);
+    // Effetto pala (max +40%)
+    const lipFactor = 1 + Math.min(lipArea * 4, 0.40);
 
-    // RESISTENZA FILO
-    const lineDrag = 1 - (diameter / 10);
+    // Effetto velocità (max +25%)
+    const speedFactor = 1 + Math.min((speed - 3) * 0.07, 0.25);
 
-    // EFFETTO VELOCITÀ
-    const speedFactor = speed * 0.55;
+    // Effetto diametro filo (max -30%)
+    const lineDrag = 1 - Math.min((diameter - 0.5) * 0.12, 0.30);
 
-    // EFFICIENZA ARTIFICIALE (lunghezza incide sulla stabilità)
-    const lureFactor = 1 + (lureLength / 100);
+    // Effetto lunghezza artificiale (max ±10%)
+    const lureFactor = 1 + Math.min((lureLength - 100) / 1000, 0.10);
 
-    // PROFONDITÀ REALE
-    const realDepth = theoreticalDepth * lipFactor * lineDrag * speedFactor / lureFactor;
+    // PROFONDITÀ REALE (realistica)
+    const realDepth = theoreticalDepth * lipFactor * speedFactor * lineDrag * lureFactor;
 
-    // CALCOLO LENZA NECESSARIA
-    const L = targetDepth <= 0 ? 0 : Math.round((targetDepth / realDepth) * 30);
+    // LENZA DA CALARE (lineare e credibile)
+    const L = Math.round((targetDepth / realDepth) * 30);
 
     // OUTPUT — RISULTATI IN ROSSO, GRASSETTO, MAIUSCOLO, GRANDI
     document.getElementById("realDepth").innerHTML =
