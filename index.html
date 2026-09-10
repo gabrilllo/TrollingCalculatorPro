@@ -1,211 +1,60 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Trolling Calculator Pro</title>
-
+<title>Trolling Calculator Pro 3.0</title>
 <link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#00b4d8"> 
-
 </head>
 
 <body>
 
-<header>
-
-<h1>🎣 Trolling Calculator Pro</h1>
-<p>Calcolatore per la pesca alla traina con artificiali</p>
-
+<header style="text-align:center; padding:40px 20px;">
+    <h1>Trolling Calculator Pro 3.0</h1>
+    <p>Il primo calcolatore automatico per la traina che ti mostra la profondità reale dell’artificiale.</p>
 </header>
 
-<nav>
+<section style="max-width:800px; margin:auto; padding:20px;">
+    <h2>🎣 Perché ti serve</h2>
+    <p>La profondità dichiarata dagli artificiali è quasi sempre <strong>sballata</strong>. 
+    Con questo tool sai esattamente <strong>a che quota lavora l’esca</strong>, così aumenti le catture.</p>
 
-<button onclick="showPage('calculator')">🎣 Calcolatore</button>
+    <h2>⚙️ Come funziona</h2>
+    <ul>
+        <li>Inserisci la velocità</li>
+        <li>Scegli la paletta</li>
+        <li>Inserisci il diametro del filo</li>
+        <li>Inserisci la profondità dichiarata</li>
+        <li>Il tool calcola la profondità reale</li>
+    </ul>
 
-<button onclick="showPage('preferiti')">⭐ Preferiti</button>
+    <div style="text-align:center; margin:40px 0;">
+        <a href="app.html" style="padding:15px 25px; background:#007bff; color:white; border-radius:8px; text-decoration:none; font-size:20px;">
+            👉 Usa il Tool Gratis
+        </a>
+    </div>
 
-<button onclick="showPage('catture')">📒 Catture</button>
+    <h2>⭐ Versione PRO (19 €)</h2>
+    <p>La versione PRO include:</p>
+    <ul>
+        <li>Tabelle profondità artificiali famosi</li>
+        <li>Setup consigliati per palamite, sgombri, alletterati</li>
+        <li>Profondità ottimale per ogni specie</li>
+        <li>Mini guida PDF alla traina costiera</li>
+        <li>Accesso alla community privata Telegram</li>
+        <li>Aggiornamenti futuri inclusi</li>
+    </ul>
 
-</nav>
-
-<main>
-
-<section id="calculator" class="page">
-
-<h2>Calcolatore</h2>
-
-<label>Lunghezza paletta (mm)</label>
-
-<input
-type="number"
-id="lipLength"
-value="25">
-
-<label>Larghezza paletta (mm)</label>
-
-<input
-type="number"
-id="lipWidth"
-value="18">
-
-<label>Angolo paletta (°)</label>
-
-<input
-type="number"
-id="lipAngle"
-value="35">
-
-<label>Affondamento teorico artificiale (m)</label>
-
-<input
-type="number"
-id="lureDepth"
-value="6"
-step="0.1">
-
-<label>Profondità desiderata (m)</label>
-
-<input
-type="number"
-id="depth"
-value="8">
-
-<label>Velocità (nodi)</label>
-
-<input
-type="number"
-id="speed"
-value="5"
-step="0.1">
-
-<label>Diametro filo (mm)</label>
-
-<input
-type="number"
-id="diameter"
-value="0.23"
-step="0.01">
-
-<label>Tipo filo</label>
-
-<select id="lineType">
-<option value="braid">Trecciato</option>
-<option value="nylon">Nylon</option>
-</select>
-
-<button onclick="calculate()">
-
-  <label>Lunghezza canna (m)</label>
-
-<input
-type="number"
-id="rod"
-value="2.10"
-step="0.10">
-
-<label>Altezza della cima sull'acqua (m)</label>
-
-<input
-type="number"
-id="tipHeight"
-value="1.20"
-step="0.10">
-
-<label>Tipo di acqua</label>
-
-<select id="water">
-
-<option value="1">Acqua salata</option>
-
-<option value="0.96">Acqua dolce</option>
-
-</select>  
-
-CALCOLA
-
-</button>
-
-<div id="result">
-
-<h3>Risultato</h3>
-
-<p>Lenza da rilasciare</p>
-
-<h1 id="output">--</h1>
-
-<p id="depthResult"></p>
-
-</div>
-
+    <div style="text-align:center; margin:40px 0;">
+        <a href="https://your-etsy-link" style="padding:15px 25px; background:#28a745; color:white; border-radius:8px; text-decoration:none; font-size:20px;">
+            👉 Scarica la Versione PRO su Etsy
+        </a>
+    </div>
 </section>
 
-<section id="preferiti" class="page" style="display:none;">
-
-<h2>Preferiti</h2>
-
-<div id="favorites">
-
-Nessun artificiale salvato.
-
-</div>
-
-</section>
-
-<section id="catture" class="page" style="display:none;">
-
-<h2>Registro Catture</h2>
-
-<div id="catchList">
-
-Ancora nessuna cattura registrata.
-
-</div>
-
-</section>
-
-</main>
-
-<footer>
-
-<strong>Trolling Calculator Pro</strong><br>
-
-Versione 3.0<br>
-
-© 2026
-
+<footer style="text-align:center; padding:20px; color:#777;">
+    © 2026 Trolling Calculator Pro — by Gabriele
 </footer>
-
-<script src="calculator.js"></script>
-<script src="storage.js"></script>
-<script src="app.js"></script>
-
-<script>
-if ('serviceWorker' in navigator) {
-
-    window.addEventListener('load', () => {
-
-        navigator.serviceWorker.register('service-worker.js')
-
-        .then(() => {
-
-            console.log("Service Worker registrato");
-
-        })
-
-        .catch(error => {
-
-            console.log(error);
-
-        });
-
-    });
-}
-</script>
 
 </body>
 </html>
