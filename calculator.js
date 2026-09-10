@@ -1,96 +1,42 @@
-/*
-=========================================
-TROLLING CALCULATOR PRO
-SIMULATORE 2.0
-=========================================
-*/
-
 function calculate() {
 
-    const profondita = parseFloat(document.getElementById("depth").value);
-    const velocita = parseFloat(document.getElementById("speed").value);
-    const diametro = parseFloat(document.getElementById("diameter").value);
+    // INPUT
+    const speed = parseFloat(document.getElementById("speed").value);
+    const diameter = parseFloat(document.getElementById("diameter").value);
+    const lipWidth = parseFloat(document.getElementById("lipWidth").value);
+    const lipLength = parseFloat(document.getElementById("lipLength").value);
+    const lureLength = parseFloat(document.getElementById("lureLength").value);
+    const theoreticalDepth = parseFloat(document.getElementById("theoreticalDepth").value);
+    const targetDepth = parseFloat(document.getElementById("targetDepth").value);
 
-    const lunghezzaPaletta = parseFloat(document.getElementById("lipLength").value);
-    const larghezzaPaletta = parseFloat(document.getElementById("lipWidth").value);
-    const angolo = parseFloat(document.getElementById("lipAngle").value);
-
-    const affondamento = parseFloat(document.getElementById("lureDepth").value);
-
-    const tipoFilo = document.getElementById("lineType").value;
-
-    const acqua = parseFloat(document.getElementById("water").value);
-
-    const canna = parseFloat(document.getElementById("rod").value);
-
-    const cima = parseFloat(document.getElementById("tipHeight").value);
-
-    if (
-        [profondita, velocita, diametro, lunghezzaPaletta,
-         larghezzaPaletta, angolo, affondamento].some(isNaN)
-    ) {
+    if ([speed, diameter, lipWidth, lipLength, lureLength, theoreticalDepth, targetDepth].some(isNaN)) {
         alert("Compila tutti i campi.");
         return;
     }
 
-    /* Superficie paletta */
+    // SUPERFICIE PALA (cm² → m²)
+    const lipArea = (lipWidth * lipLength) / 10000;
 
-    const superficie =
-        (lunghezzaPaletta * larghezzaPaletta) / 100;
+    // COEFFICIENTE PALA
+    const lipFactor = 1 + (lipArea * 12);
 
-    /* Efficienza angolo */
+    // RESISTENZA FILO
+    const lineDrag = 1 - (diameter / 10);
 
-    const efficienza =
-        Math.sin(angolo * Math.PI / 180);
+    // EFFETTO VELOCITÀ
+    const speedFactor = speed * 0.55;
 
-    /* Effetto velocità */
+    // EFFICIENZA ARTIFICIALE (lunghezza incide sulla stabilità)
+    const lureFactor = 1 + (lureLength / 100);
 
-    const forzaVelocita =
-        Math.pow(velocita,2);
+    // PROFONDITÀ REALE
+    const realDepth = theoreticalDepth * lipFactor * lineDrag * speedFactor / lureFactor;
 
-    /* Resistenza filo */
+    // CALCOLO LENZA NECESSARIA
+    // modello semplificato: profondità cresce logaritmicamente con la lenza
+    const L = targetDepth <= 0 ? 0 : Math.round((targetDepth / realDepth) * 30);
 
-    const resistenza =
-        diametro * 8;
-
-    /* Trecciato */
-
-    const coeffFilo =
-        tipoFilo==="braid" ? 1.00 : 0.92;
-
-    /* Portanza */
-
-    const indiceIdrodinamico =
-
-        superficie *
-
-        efficienza *
-
-        forzaVelocita *
-
-        acqua *
-
-        coeffFilo /
-
-        resistenza;
-
-    /* Simulazione */
-
-    const metri =
-
-        (profondita / affondamento)
-
-        *35
-
-        /(indiceIdrodinamico/10)
-
-        +(canna+cima);
-
-    document.getElementById("output").innerHTML =
-        Math.round(metri)+" m";
-
-    document.getElementById("depthResult").innerHTML =
-
-        "Indice idrodinamico: "
-        +indiceIdrodinamico.toFixed(2);
+    // OUTPUT
+    document.getElementById("realDepth").innerHTML = realDepth.toFixed(2) + " m";
+    document.getElementById("lineOut").innerHTML = L + " m";
 }
