@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trolling Calculator - Versione Gratis</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header style="text-align:center; padding:30px;">
+    <h1>Trolling Calculator - Versione Gratis</h1>
+    <p>Inserisci i dati per simulare il funzionamento del tool.<br>
+    I risultati sono disponibili solo nella <strong>Versione PRO (€8)</strong>.</p>
+</header>
+
+<section style="max-width:700px; margin:auto; padding:20px;">
+
+    <h2>⚙️ Inserisci i tuoi dati</h2>
+
+    <label>Velocità (nodi):</label>
+    <input type="number" id="speed" placeholder="Es. 3.2" style="width:100%; padding:10px; margin-bottom:15px;">
+
+    <label>Tipo di paletta:</label>
+    <select id="paletta" style="width:100%; padding:10px; margin-bottom:15px;">
+        <option value="">Seleziona...</option>
+        <option value="bassa">Bassa</option>
+        <option value="media">Media</option>
+        <option value="profonda">Profonda</option>
+    </select>
+
+    <label>Diametro filo (mm):</label>
+    <input type="number" id="diametro" placeholder="Es. 0.25" style="width:100%; padding:10px; margin-bottom:15px;">
+
+    <label>Profondità dichiarata (m):</label>
+    <input type="number" id="profondita" placeholder="Es. 4" style="width:100%; padding:10px; margin-bottom:20px;">
+
+    <div style="text-align:center;">
+        <button onclick="calculateDepth()" 
+                style="padding:12px 20px; background:#007bff; color:white; border:none; border-radius:6px; font-size:18px;">
+            Calcola
+        </button>
+    </div>
+
+    <div id="message" style="text-align:center; margin-top:30px; font-size:18px; color:#d9534f;"></div>
+
+</section>
+
+<script>
+function calculateDepth() {
+    document.getElementById("message").innerHTML =
+        "🔒 La profondità reale e la curva di immersione sono disponibili solo nella <strong>Versione PRO (€8)</strong>.<br><br>" +
+        "<a href='https://payhip.com/b/sgX1e' target='_blank' " +
+        "style='display:inline-block; padding:12px 20px; background:#2196F3; color:white; text-decoration:none; border-radius:6px; margin-top:10px;'>Acquista la Versione PRO</a>";
+}
+</script>
+
+<footer style="text-align:center; padding:20px; color:#777;">
+    © 2026 Trolling Calculator — Versione Gratis
+</footer>
+
+</body>
+</html>
