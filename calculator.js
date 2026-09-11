@@ -17,7 +17,6 @@ function calculate() {
     }
 
     // MODELLO REALISTICO BASATO SU DATI EMPIRICI
-
     const lipArea = (lipWidth * lipLength) / 10000;
     const lipFactor = 1 + Math.min(lipArea * 3, 0.30);
     const speedFactor = 1 + Math.min((speed - 3) * 0.05, 0.20);
@@ -27,40 +26,30 @@ function calculate() {
     let maxRealisticDepth = theoreticalDepth * lipFactor * speedFactor * lineDrag * lureFactor;
     maxRealisticDepth = Math.min(maxRealisticDepth, theoreticalDepth * 1.4);
 
-    const depthCoefficient = 0.28; // profondità ≈ lenza * 0.28 (valore medio realistico)
+    const depthCoefficient = 0.28; 
     const requiredLine = Math.round(targetDepth / depthCoefficient);
 
-    // Se la profondità richiesta supera il massimo realistico → avviso
+    // PROFONDITÀ NON RAGGIUNGIBILE
     if (targetDepth > maxRealisticDepth) {
-        document.getElementById("realDepth").innerHTML =
-            "<span style='color:red; font-weight:bold; font-size:32px;'>NON RAGGIUNGIBILE</span>";
 
-        document.getElementById("lineOut").innerHTML =
-            "<span style='color:red; font-weight:bold; font-size:28px;'>Profondità massima: " +
-            maxRealisticDepth.toFixed(1).toUpperCase() + " M</span>";
+        document.getElementById("realDepth").textContent = "NON RAGGIUNGIBILE";
+        document.getElementById("lineOut").textContent = "Max: " + maxRealisticDepth.toFixed(1) + " m";
 
         drawDepthChart([], []);
         return;
     }
 
+    // PROFONDITÀ REALE
     const realDepth = Math.min(requiredLine * depthCoefficient, maxRealisticDepth);
 
-    // OUTPUT — RISULTATI IN ROSSO, GRASSETTO, MAIUSCOLO, GRANDI
-    document.getElementById("realDepth").innerHTML =
-        "<span style='color:red; font-weight:bold; font-size:32px;'>" +
-        (realDepth.toFixed(2) + " M").toUpperCase() +
-        "</span>";
-
-    document.getElementById("lineOut").innerHTML =
-        "<span style='color:red; font-weight:bold; font-size:32px;'>" +
-        ((requiredLine + " M").toUpperCase()) +
-        "</span>";
+    document.getElementById("realDepth").textContent = realDepth.toFixed(2) + " m";
+    document.getElementById("lineOut").textContent = requiredLine + " m";
 
     // CURVA DI AFFONDAMENTO
     const lineValues = [];
     const depthValues = [];
 
-    for (let L = 0; L <= requiredLine; L += 1) {
+    for (let L = 0; L <= requiredLine; L++) {
         const d = Math.min(L * depthCoefficient, maxRealisticDepth);
         lineValues.push(L);
         depthValues.push(d.toFixed(2));
